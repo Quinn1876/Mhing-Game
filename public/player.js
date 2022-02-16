@@ -17,8 +17,7 @@ class Player {
    *
    * @param {number} oldIndex the index of the card you want to move
    * @param {number} newIndex the index of the slot you want to move the card to
-   * The new index is the index of the card to the right of the position where the card
-   * is being inserted
+   *
    */
   changeCardPosition(oldIndex, newIndex) {
     if (typeof oldIndex !== 'number' || typeof newIndex !== 'number') {
@@ -39,20 +38,12 @@ class Player {
     } else if (newIndex === this.hand.length - 1) {
       this.hand = [...this.hand.filter((_, index) => oldIndex !== index), this.hand[oldIndex]];
 
-    } else if (oldIndex > newIndex) {
+    } else {
       this.hand = this.hand.filter((_, index) => index !== oldIndex);
       this.hand = [
         ...this.hand.slice(0, newIndex),
         card,
         ...this.hand.slice(newIndex, this.hand.length),
-      ];
-
-    } else {
-      this.hand = this.hand.filter((_, index) => index !== oldIndex);
-      this.hand = [
-        ...this.hand.slice(0, newIndex-1),
-        card,
-        ...this.hand.slice(newIndex-1, this.hand.length),
       ];
     }
   }
